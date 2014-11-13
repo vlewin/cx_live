@@ -13,9 +13,8 @@ class Campaign < ActiveRecord::Base
 
     ap columns
     #(2..spreadsheet.last_row).each do |i|
-    (2..3).each do |i|
+    (2..30).each do |i|
       row = Hash[[columns, spreadsheet.row(i)].transpose]
-      byebug
       image = self.images.create(url: row['image_url'])
 
       row.each do |name, value|
