@@ -27,11 +27,10 @@ ActiveRecord::Schema.define(version: 20141113202633) do
   end
 
   create_table "tags", force: true do |t|
-    t.string   "name"
-    t.string   "value"
-    t.integer  "image_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "name"
+    t.text    "description"
+    t.string  "value"
+    t.integer "image_id"
   end
 
 end
