@@ -1,24 +1,23 @@
 class Campaign < ActiveRecord::Base
   has_many :images
+  has_many :tags, through: :images
+
+  def search(values)
+    images.includes(:tags).where('tags.value' => values)
+  end
 
   def import(file)
     spreadsheet = Roo::Excelx.new(file.path, file_warning: :ignore)
     headers = spreadsheet.row(1)
 
-    columns = []
-    headers.each_with_index do |header, index|
-      header = (header.length > 12) ? "column_#{index}" : header.underscore
-      columns.push(header)
-    end
-
-    ap columns
     #(2..spreadsheet.last_row).each do |i|
-    (2..30).each do |i|
-      row = Hash[[columns, spreadsheet.row(i)].transpose]
+    (2..50).each do |i|
+      row = Hash[[headers, spreadsheet.row(i)].transpose]
       image = self.images.create(url: row['image_url'])
 
-      row.each do |name, value|
-        image.tags.create(name: name, value: value)
+      row.each_with_index do |(name, value), index|
+        column = (name.length > 20) ? "column_#{index}" : name.underscore
+        image.tags.create(name: column, description: name, value: value.present? ? value : nil )
       end
     end
   end
