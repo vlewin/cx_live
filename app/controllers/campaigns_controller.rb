@@ -1,5 +1,5 @@
 class CampaignsController < ApplicationController
-  before_action :set_campaign, only: [:show, :search, :edit, :update, :destroy]
+  before_action :set_campaign, only: [:show, :search, :values, :edit, :update, :destroy]
 
   # GET /campaigns
   # GET /campaigns.json
@@ -10,15 +10,19 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
-    # FIXME: Ransack or Filterrific
-    if params[:name] && params[:value]
-      @images = Image.includes(:campaign, :tags)
-                  .where('campaigns.id' => @campaign.id)
-                  .where('tags.name' => params[:name])
-                  .where('value LIKE ?', "%#{params[:value]}%")
+    @tags = @campaign.tags.pluck(:description, :name).uniq
+    if params[:tags]
+      @images = @campaign.search(params[:tags])
     else
       @images = @campaign.images.includes(:tags)
     end
+
+    ap @images.count
+  end
+
+  def values
+    values = @campaign.images.joins(:tags).where('tags.name' => params[:tag].underscore).uniq.pluck(:value).compact
+    render partial: 'select', locals: { values: values } if request.xhr?
   end
 
   # GET /campaigns/new
