@@ -1,19 +1,19 @@
-%h1 Listing campaigns
+%h2.page-header
+  Campaigns
+  .pull-right
+    = link_to 'Import new campaign', new_campaign_path, class: 'btn btn-md btn-success'
 
-%table
-  %tr
-    %th Name
-    %th
-    %th
-    %th
-
+.row
   - @campaigns.each do |campaign|
-    %tr
-      %td= campaign.name
-      %td= link_to 'Show', campaign
-      %td= link_to 'Edit', edit_campaign_path(campaign)
-      %td= link_to 'Destroy', campaign, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    .col-xs-12.col-sm-4.col-md-3
+      .thumbnail
+        = image_tag campaign.images.first.url, class: 'img-responsive'
+        .caption
+          %h3= campaign.name
+          %p.text-muted
+            %span.badge= "Images #{campaign.images.count}"
+            %span.badge= "Tags #{campaign.tags.count}"
+          %hr
+          %p
+            = link_to 'Show', campaign, class: 'btn btn-block btn-primary'
 
-%br
-
-= link_to 'New Campaign', new_campaign_path
