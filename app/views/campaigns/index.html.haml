@@ -1,35 +1,36 @@
-%h2.page-header
-  Campaigns
-  .pull-right
-    = link_to 'Import new campaign', new_campaign_path, class: 'btn btn-md btn-success'
+#campaigns
+  %h2.page-header
+    Campaigns
+    .pull-right
+      = link_to 'Import new campaign', new_campaign_path, class: 'btn btn-md btn-success'
 
-.row
-  - @campaigns.each do |campaign|
-    .col-xs-12.col-sm-4.col-md-3
-      .thumbnail
-        = image_tag campaign.images.first.url, class: 'img-responsive'
-        .caption
-          %h3= campaign.name
-          %p.text-muted
-            Images:
-            %span.badge= campaign.images.size
-            Tags:
-            %span.badge= campaign.tags.size
-          %hr
-          %p
-            = link_to 'Show', campaign, class: 'btn btn-block btn-primary'
+  .row
+    - @campaigns.each do |campaign|
+      .col-xs-12.col-sm-4.col-md-3
+        .thumbnail
+          = image_tag campaign.images.sample.url, class: 'img-responsive'
+          .caption
+            %h3= campaign.name
+            %p.text-muted
+              Images:
+              %span.badge= campaign.images.size
+              Tags:
+              %span.badge= campaign.tags.size
+            %hr
+            %p
+              = link_to 'Show', campaign, class: 'btn btn-block btn-primary'
 
 
-.well
-  TODO:
-  %ol
-    %li.done Multi select
-    %li.done Selected filter
-    %li.done Show values select box
-    %li Cover with tests (models, controllers)
-    %li.done [IMPORT] Number of rows
-    %li.done [IMPORT] Ignore empty rows
-    %li [SHOW] Image preview on hover
-    %li [SHOW] Multiple tag filters
-    %li [SHOW] Auto height for 'tags' select box
-    %li [SHOW] Replace selects with drop-downs
+  .well
+    TODO:
+    %ol
+      %li.done Multi select
+      %li.done Selected filter
+      %li.done Show values select box
+      %li Cover with tests (models, controllers)
+      %li.done [IMPORT] Number of rows
+      %li.done [IMPORT] Ignore empty rows
+      %li [SHOW] Image preview on hover
+      %li [SHOW] Multiple tag filters
+      %li [SHOW] Auto height for 'tags' select box
+      %li [SHOW] Replace selects with drop-downs
