@@ -7,7 +7,7 @@ $(document).ready ->
     $select = undefined
     $select = $(this)
     $.get $select.data("source"),
-      tag: $select.val()
+      name: $select.val()
     , (data) ->
       $select.parent(".filter").find(".value").html data
 
