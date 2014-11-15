@@ -16,13 +16,13 @@ class Campaign < ActiveRecord::Base
     headers = spreadsheet.row(1)
 
     #(2..spreadsheet.last_row).each do |i|
-    (2..50).each do |i|
+    (2..5).each do |i|
       row = Hash[[headers, spreadsheet.row(i)].transpose]
       image = self.images.create(url: row['image_url'])
 
       row.each_with_index do |(name, value), index|
         column = (name.length > 20) ? "column_#{index}" : name.underscore
-        image.tags.create(name: column, description: name, value: value.present? ? value : nil )
+        image.tags.create(name: column, description: name, value: value ) if value.present?
       end
     end
   end
