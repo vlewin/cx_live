@@ -3,10 +3,12 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  $("body").on "click", ".filter select", (event) ->
+  $("body").on "change", "select.tag", (event) ->
+    $select = undefined
     $select = $(this)
-    $.get $select.data("source"), tag: $select.val(), (data) ->
-      $select.parent('.filter').find('.value').html data
-      return
-    return
-  return
+    $.get $select.data("source"),
+      tag: $select.val()
+    , (data) ->
+      $select.parent(".filter").find(".value").html data
+
+
