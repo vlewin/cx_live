@@ -38,12 +38,10 @@ class CampaignsController < ApplicationController
   # POST /campaigns.json
   def create
     @campaign = Campaign.new(campaign_params)
-    ap params[:file]
-
 
     respond_to do |format|
       if @campaign.save
-        @campaign.import(params[:file])
+        @campaign.import(params[:file], params[:number_of_rows])
         format.html { redirect_to campaigns_url, notice: 'Campaign was successfully created.' }
         format.json { render :show, status: :created, location: @campaign }
       else
