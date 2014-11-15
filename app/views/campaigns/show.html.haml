@@ -1,47 +1,50 @@
-%p#notice= notice
+#campaign
+  %p#notice= notice
 
-%h3.page-hader
-  = @campaign.name
+  %h3.page-hader
+    = @campaign.name
 
-.row
-  .col-md-6
-    .panel.panel-default
-      .panel-heading
-        .panel-title
-          Images
-          .pull-right
-            .badge= @images.size
+  .row
+    .col-md-6
+      .panel.panel-default
+        .panel-heading
+          .panel-title
+            Images
+            .pull-right
+              .badge= @images.size
 
-      .panel-body
-        - if @images
-          .row
-            - @images.each do |image|
-              .col-xs-6.col-md-3
-                = image_tag image.url
-        - else
-          %h4 No image found!
+        .panel-body
+          - if @images
+            .row
+              - @images.each do |image|
+                .col-xs-6.col-md-3
+                  = image_tag image.url, class: 'img-square img-circle img-thumbnail', width: '128px', height: '128px'
+          - else
+            %h4 No images found!
 
-  .col-md-6
-    .panel.panel-default
-      .panel-heading
-        .panel-title Filters
+    .col-md-6
+      .panel.panel-default
+        .panel-heading
+          .panel-title
+            Filters
+            .pull-right
+              -# %button.btn.btn-xs.btn-default{"aria-label" => "Left Align", :type => "button"}
+              -#   %span.glyphicon.glyphicon-plus-sign{"aria-hidden" => "true"}
+              -#   = link_to 'Add filter', add_filter_campaign_path(@campaign), class: 'add', data: { target: '.filter', handler: :append }, remote: true
 
-      .panel-body
-        = form_tag search_campaign_path(@campaign), { id: '#filters_form' } do
-          .filter
-            - options = { class: 'tag form-control', data: { source: values_campaign_path(@campaign) }}
-            = select_tag :name, options_for_select(@tags, params[:name] || :title), options
-            %br
-            .value
-              - options = { multiple: true, class: 'form-control', size: 10 }
-              = select_tag :tags, options_for_select(@values, selected: params[:tags]), options
+        .panel-body
+          .text-muted
+            %span.glyphicon.glyphicon-info-sign
+            Please reload the page if second select box doesn't appear
 
-          %span.help-block Please reload the page if second select box doesn't appear after select change
+          = form_tag search_campaign_path(@campaign), { id: 'filters_form' } do
+            = render 'filter'
+            = link_to 'Add filter', add_filter_campaign_path(@campaign), class: 'add', data: { target: '.filter', handler: :append }, remote: true
 
-          %hr
-          = submit_tag 'Apply filters', class: 'btn btn-success'
+            %hr
+            = submit_tag 'Apply filters', class: 'btn btn-success'
 
-= link_to 'Back', campaigns_path, class: 'btn btn-default'
+  = link_to 'Back', campaigns_path, class: 'btn btn-default'
 
 
 

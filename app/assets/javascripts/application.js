@@ -14,3 +14,40 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function() {
+  console.log( "ready!" );
+
+  // $(document).on('ajax:before', 'a[data-remote="true"]', function () {
+  //   $('#spinner').toggleClass('hidden')
+  // })
+
+  $(document).on('ajax:complete', 'a[data-remote="true"]', function (data, xhr, status) {
+    var target = $(this).data('target');
+    var handler = $(this).data('handler');
+
+    if(target === undefined) {
+      console.warn('Please set data-target attribute on "' + $(this).text() + '" link');
+    } else {
+      console.log(handler)
+      if(handler === undefined) {
+        $(target).html(xhr.responseText);
+      } else {
+        console.log("Append")
+        // console.log(xhr.responseText)
+        console.log(target)
+        if(handler === 'append') {
+          $(target).after(xhr.responseText);
+        }
+        // FIXME: Call
+        // http://devlicio.us/blogs/sergio_pereira/archive/2009/02/09/javascript-5-ways-to-call-a-function.aspx
+        // $(target)['html']('xhr.responseText');
+        // console.log(target)
+        // window['alert']("cdldlc")
+      }
+    }
+  //   // $('#spinner').toggleClass('hidden')
+  //   return false
+  })
+
+});

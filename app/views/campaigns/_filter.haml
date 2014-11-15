@@ -1,0 +1,7 @@
+.filter
+  - options = { class: 'tag form-control', data: { source: filter_values_campaign_path(@campaign) }}
+  = select_tag :name, options_for_select(@names, params[:name] || :title), options
+
+  .value
+    - options = { multiple: true, class: 'form-control', size: 10 }
+    = select_tag :tags, options_for_select(@values, selected: params[:tags]), options

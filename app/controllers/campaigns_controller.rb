@@ -1,5 +1,5 @@
 class CampaignsController < ApplicationController
-  before_action :set_campaign, only: [:show, :search, :values, :edit, :update, :destroy]
+  before_action :set_campaign, only: [:show, :search, :filter_values, :add_filter, :edit, :update, :destroy]
 
   # GET /campaigns
   # GET /campaigns.json
@@ -10,8 +10,7 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
-    # @tags = @campaign.tags.limit(10).pluck(:description, :name).uniq
-    @tags = @campaign.tags.pluck(:description, :name).uniq
+    @names = @campaign.tags.pluck(:description, :name).uniq
     @values = @campaign.values_for_tag(params[:name] ? params[:name] : 'title')
 
     if params[:tags]
@@ -21,7 +20,14 @@ class CampaignsController < ApplicationController
     end
   end
 
-  def values
+  def add_filter
+    @names = @campaign.tags.pluck(:description, :name).uniq
+    @values = @campaign.values_for_tag(params[:name] ? params[:name] : 'title')
+
+    render partial: 'filter' if request.xhr?
+  end
+
+  def filter_values
     render partial: 'select', locals: { values: @campaign.values_for_tag(params[:name]) } if request.xhr?
   end
 
