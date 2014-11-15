@@ -6,6 +6,11 @@ class Campaign < ActiveRecord::Base
     images.includes(:tags).where('tags.value' => values)
   end
 
+  def values_for_tag(tags)
+    tags = (tags.is_a? Array) ? tags.map(&:underscore) : tags.underscore
+    images.joins(:tags).where('tags.name' => tags).uniq.pluck(:value).compact.sort
+  end
+
   def import(file)
     spreadsheet = Roo::Excelx.new(file.path, file_warning: :ignore)
     headers = spreadsheet.row(1)

@@ -10,19 +10,19 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
+    # @tags = @campaign.tags.limit(10).pluck(:description, :name).uniq
     @tags = @campaign.tags.pluck(:description, :name).uniq
+    @values = @campaign.values_for_tag(params[:name] ? params[:name] : 'title')
+
     if params[:tags]
       @images = @campaign.search(params[:tags])
     else
       @images = @campaign.images.includes(:tags)
     end
-
-    ap @images.count
   end
 
   def values
-    values = @campaign.images.joins(:tags).where('tags.name' => params[:tag].underscore).uniq.pluck(:value).compact
-    render partial: 'select', locals: { values: values } if request.xhr?
+    render partial: 'select', locals: { values: @campaign.values_for_tag(params[:name]) } if request.xhr?
   end
 
   # GET /campaigns/new
