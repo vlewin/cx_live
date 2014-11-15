@@ -11,9 +11,24 @@
         .caption
           %h3= campaign.name
           %p.text-muted
-            %span.badge= "Images #{campaign.images.count}"
-            %span.badge= "Tags #{campaign.tags.count}"
+            Images:
+            %span.badge= campaign.images.size
+            Tags:
+            %span.badge= campaign.tags.size
           %hr
           %p
             = link_to 'Show', campaign, class: 'btn btn-block btn-primary'
 
+
+.well
+  TODO:
+  %ol
+    %li.done Multi select
+    %li.done Selected filter
+    %li.done Show values select box
+    %li Cover with tests (models, controllers)
+    %li [SHOW] Multiple tag filters
+    %li [SHOW] Auto height for 'tags' select box
+    %li [SHOW] Replace selects with drop-downs
+    %li [IMPORT] Number of rows
+    %li [IMPORT] Ignore empty rows
