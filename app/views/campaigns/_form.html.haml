@@ -8,10 +8,17 @@
 
   .form-group
     = f.label :name
-    = f.text_field :name, class: 'form-control'
+    = f.text_field :name, required: true, class: 'form-control'
+
+  .form-group
+    = label_tag :number_of_rows
+    = number_field_tag 'number_of_rows', 50, in: 1...100, class: 'form-control'
+    %p.help-block
+      Default 50, min: 1, max: 100
+
   .form-group
     = f.label :excel_file
-    = file_field_tag :file,  accept: 'text/xlsx'
+    = file_field_tag :file, required: true,  accept: 'text/xlsx'
     %p.help-block
       Please be patient, large files might take a while to upload.
 
