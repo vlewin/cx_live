@@ -7,7 +7,10 @@
   .col-md-6
     .panel.panel-default
       .panel-heading
-        .panel-title Images
+        .panel-title
+          Images
+          .pull-right
+            .badge= @images.size
 
       .panel-body
         - if @images
@@ -24,26 +27,19 @@
         .panel-title Filters
 
       .panel-body
-        -# != ap params
         = form_tag search_campaign_path(@campaign), { id: '#filters_form' } do
           .filter
-            - data = { source: values_campaign_path(@campaign) }
-            - options = { selected: params[:name], class: 'filter form-control', data: data }
-            = select_tag :name, options_for_select(@tags), options
+            - options = { class: 'tag form-control', data: { source: values_campaign_path(@campaign) }}
+            = select_tag :name, options_for_select(@tags, params[:name] || :title), options
             %br
             .value
+              - options = { multiple: true, class: 'form-control', size: 10 }
+              = select_tag :tags, options_for_select(@values, selected: params[:tags]), options
 
           %span.help-block Please reload the page if second select box doesn't appear after select change
 
           %hr
-          = submit_tag 'Search', class: 'btn btn-success'
-
-    .well
-      TODO:
-      %ol
-        %li Multi select
-        %li Selected filter
-
+          = submit_tag 'Apply filters', class: 'btn btn-success'
 
 = link_to 'Back', campaigns_path, class: 'btn btn-default'
 
