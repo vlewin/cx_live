@@ -18,6 +18,8 @@ class CampaignsController < ApplicationController
     else
       @images = @campaign.images.includes(:tags)
     end
+
+    render partial: 'images' if request.xhr?
   end
 
   def add_filter
