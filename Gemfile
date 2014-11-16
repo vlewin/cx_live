@@ -30,6 +30,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'codeclimate-test-reporter'
   gem 'rspec-rails' #, '~> 3.1.2'
   gem 'factory_girl_rails'
   gem 'database_cleaner'

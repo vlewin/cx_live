@@ -1,3 +1,9 @@
+# FIXME: Move to CI/CD or secrets.yml
+ENV['CODECLIMATE_REPO_TOKEN'] = '15cfef410f16ab2bf9be0a3f385fb33110d76c08dfac4b90c0034052b3fc51bb'
+
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start
+
 # if ENV['CODECLIMATE_REPO_TOKEN']
 #   require 'codeclimate-test-reporter'
 #   CodeClimate::TestReporter.start
