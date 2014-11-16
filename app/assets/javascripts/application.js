@@ -13,10 +13,19 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+
 //= require_tree .
 
 $(document).ready(function() {
   console.log( "ready!" );
+
+  $('.img-square').popover({
+    html: true,
+    trigger: 'hover',
+    content: function () {
+      return '<img src="'+$(this).data('img') + '" />';
+    }
+  });
 
   // $(document).on('ajax:before', 'a[data-remote="true"]', function () {
   //   $('#spinner').toggleClass('hidden')

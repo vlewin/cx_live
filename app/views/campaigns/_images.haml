@@ -10,6 +10,6 @@
       .row
         - @images.each do |image|
           .col-xs-6.col-md-4
-            = image_tag image.url, class: 'img-square img-circle img-thumbnail img-responsive'
+            = image_tag image.url, data: { img: image.url }, class: 'img-square img-circle img-thumbnail img-responsive'
     - else
       %h4 No images found!
