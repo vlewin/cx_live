@@ -1,4 +1,4 @@
-Cx Live
+Cx Live [![Code Climate](https://codeclimate.com/github/vlewin/cx_live/badges/gpa.svg)](https://codeclimate.com/github/vlewin/cx_live) [![Test Coverage](https://codeclimate.com/github/vlewin/cx_live/badges/coverage.svg)](https://codeclimate.com/github/vlewin/cx_live)
 ================
 
 This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
