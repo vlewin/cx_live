@@ -6,9 +6,9 @@ class Campaign < ActiveRecord::Base
     images.includes(:tags).where('tags.value' => values)
   end
 
-  def values_for_tag(tags)
-    tags = (tags.is_a? Array) ? tags.map(&:underscore) : tags.underscore
-    images.joins(:tags).where('tags.name' => tags).uniq.pluck(:value).compact.sort
+  def values_for_tag(names)
+    names = (names.is_a? Array) ? names.map(&:underscore) : names.underscore
+    tags.where('name' => names).uniq.pluck(:value).compact.sort
   end
 
   def import(file, number_of_rows=50)
