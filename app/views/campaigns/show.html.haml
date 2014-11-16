@@ -17,8 +17,8 @@
           - if @images
             .row
               - @images.each do |image|
-                .col-xs-6.col-md-3
-                  = image_tag image.url, class: 'img-square img-circle img-thumbnail', width: '128px', height: '128px'
+                .col-xs-6.col-md-4
+                  = image_tag image.url, class: 'img-square img-circle img-thumbnail img-responsive'
           - else
             %h4 No images found!
 
