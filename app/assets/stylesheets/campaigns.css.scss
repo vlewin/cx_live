@@ -24,10 +24,22 @@
     }
   }
 
-  .img-square {
-    width: 200px;
-    height: 200px;
-    margin: 5px 0px;
+  #images {
+    .img-square {
+      width: 200px;
+      height: 200px;
+      margin: 5px 0px;
+    }
+
+    .popover {
+      max-height: 512px;
+      max-width: 512px;
+
+      img {
+        max-height: 400px;
+        max-width: 400px;
+      }
+    }
   }
 }
 
