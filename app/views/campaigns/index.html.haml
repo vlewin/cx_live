@@ -18,19 +18,28 @@
               %span.badge= campaign.tags.size
             %hr
             %p
-              = link_to 'Show', campaign, class: 'btn btn-block btn-primary'
+              .btn-group.btn-group-justified
+                = link_to 'Show', campaign, class: 'btn btn-block btn-primary'
+                = link_to 'Destroy', campaign, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-block'
 
 
-  .well
-    TODO:
-    %ol
-      %li.done Multi select
-      %li.done Selected filter
-      %li.done Show values select box
-      %li Cover with tests (models, controllers)
-      %li.done [IMPORT] Number of rows
-      %li.done [IMPORT] Ignore empty rows
-      %li [SHOW] Image preview on hover
-      %li.done [SHOW] Multiple tag filters
-      %li [SHOW] Auto height for 'tags' select box
-      %li [SHOW] Replace selects with drop-downs
+
+.well
+  TODO:
+  %ol
+    %li.done Multi select
+    %li.done Selected filter
+    %li.done Show values select box
+    %li.done Cover with tests (models)
+    %li Cover with tests (controllers)
+    %li.done [IMPORT] Number of rows
+    %li.done [IMPORT] Ignore empty rows
+    %li [SHOW] Image preview on hover
+    %li.done [SHOW] Multiple tag filters
+    %li [SHOW] Auto height for 'tags' select box
+    %li [SHOW] Replace selects with drop-downs
+
+  BONUS:
+  %ol
+    %li.done Enable codeclimate metrics (https://codeclimate.com/github/vlewin/cx_live)
+    %li Add 'Deploy to Heroku' button
