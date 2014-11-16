@@ -25,13 +25,8 @@
 
   .form-group
     %hr
-    -# %p.spinner.hidden
-    -#   = fa_icon 'spinner spin'
-    -#   Please wait ...
-
     = button_tag(type: 'submit', class: 'btn btn-success show-spinner') do
       = fa_icon 'spinner spin', class: 'hidden'
       Submit
 
-    -# = f.submit 'Save', class: 'btn btn-success show-spinner'
     = link_to 'Back', campaigns_path, class: 'btn btn-default'

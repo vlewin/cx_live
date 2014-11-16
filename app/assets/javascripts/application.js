@@ -36,11 +36,9 @@ $(document).ready(function() {
   });
 
 
-  $(document).on('ajax:before', '*[data-remote="true"]', function () {
-    $('.fa-spinner').toggleClass('hidden')
-  })
-
   $(document).on('ajax:complete', '*[data-remote="true"]', function (data, xhr, status) {
+    $('.fa-spinner').removeClass('hidden');
+
     var target = $(this).data('target');
     var handler = $(this).data('handler');
 
@@ -54,8 +52,7 @@ $(document).ready(function() {
       }
     }
 
-    $('.fa-spinner').toggleClass('hidden')
-    return false
+    $('.fa-spinner').addClass('hidden')
   })
 
 });

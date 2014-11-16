@@ -20,9 +20,9 @@
                 add filter
 
         .panel-body
-          .text-muted
-            %span.glyphicon.glyphicon-info-sign
-            Please reload the page if second select box doesn't appear
+          -# .text-muted
+          -#   %span.glyphicon.glyphicon-info-sign
+          -#   Please reload the page if second select box doesn't appear
 
           = form_tag search_campaign_path(@campaign), { id: 'filters_form', data: { target: '#images' }, remote: true } do
             = render 'filter'
