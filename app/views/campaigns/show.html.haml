@@ -28,7 +28,10 @@
             = render 'filter'
 
             %hr
-            = submit_tag 'Apply filters', class: 'btn btn-success'
+            = button_tag(type: 'submit', class: 'btn btn-success show-spinner') do
+              = fa_icon 'spinner spin', class: 'hidden'
+              Apply filters
+            -# # = submit_tag 'Apply filters', class: 'btn btn-success'
             = link_to 'Clear all filters', campaign_path(@campaign), class: 'btn btn-default'
 
 

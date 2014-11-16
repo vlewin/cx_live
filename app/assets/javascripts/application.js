@@ -19,17 +19,26 @@
 $(document).ready(function() {
   console.log( "ready!" );
 
-  $('.img-square').popover({
+  $(document).on('click', '.show-spinner', function () {
+    if($($(this).parents('form'))[0].checkValidity() === true) {
+      $('.fa-spinner').toggleClass('hidden');
+    }
+  })
+
+  $(document).popover({
     html: true,
-    trigger: 'hover',
+    trigger:'hover',
+    selector: '.img-square',
     content: function () {
       return '<img src="'+$(this).data('img') + '" />';
     }
+
   });
 
-  // $(document).on('ajax:before', 'a[data-remote="true"]', function () {
-  //   $('#spinner').toggleClass('hidden')
-  // })
+
+  $(document).on('ajax:before', '*[data-remote="true"]', function () {
+    $('.fa-spinner').toggleClass('hidden')
+  })
 
   $(document).on('ajax:complete', '*[data-remote="true"]', function (data, xhr, status) {
     var target = $(this).data('target');
@@ -44,8 +53,9 @@ $(document).ready(function() {
         $(target)[handler](xhr.responseText);
       }
     }
-  //   // $('#spinner').toggleClass('hidden')
-  //   return false
+
+    $('.fa-spinner').toggleClass('hidden')
+    return false
   })
 
 });

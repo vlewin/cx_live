@@ -17,6 +17,7 @@
       Default 100, min: 10, max: 300
 
   .form-group
+
     = f.label :excel_file
     = file_field_tag :file, required: true,  accept: 'text/xlsx'
     %p.help-block
@@ -24,5 +25,13 @@
 
   .form-group
     %hr
-    = f.submit 'Save', class: 'btn btn-success'
+    -# %p.spinner.hidden
+    -#   = fa_icon 'spinner spin'
+    -#   Please wait ...
+
+    = button_tag(type: 'submit', class: 'btn btn-success show-spinner') do
+      = fa_icon 'spinner spin', class: 'hidden'
+      Submit
+
+    -# = f.submit 'Save', class: 'btn btn-success show-spinner'
     = link_to 'Back', campaigns_path, class: 'btn btn-default'
