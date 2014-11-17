@@ -1,0 +1,18 @@
+{
+  "name": "CX Live",
+  "description": "CX Live application",
+  "logo": "https://avatars2.githubusercontent.com/u/611466",
+  "repository": "https://github.com/vlewin/cx_live",
+  "keywords": [
+    "CX Live"
+  ],
+  "scripts": {"postdeploy": "bundle exec rake db:migrate"},
+  "env": {
+    "SECRET_KEY_BASE": {
+      "description": "Rails secret key base - rake secret",
+      "value": "76fad8cf82370b5145bdf5d5765dbca2d497a3a88f4d298385e017321fee3824966ae2c47ad248d73cdf642558a2cc064dbadafb9de194d25b522a09472c0a11",
+      "required": true
+    },
+    "RAILS_ENV": "production"
+  }
+}
