@@ -3,10 +3,14 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #campaigns {
+  h2 {
+    margin-top: 10px;
+  }
+
   .thumbnail {
     img {
-      min-height: 280px;
-      max-height: 280px;
+      min-height: 250px;
+      max-height: 250px;
       width: 100%;
     }
   }
