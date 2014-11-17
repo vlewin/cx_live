@@ -15,6 +15,8 @@ gem 'font-awesome-rails'
 gem 'haml-rails'
 gem 'thin'
 gem 'roo'
+gem 'execjs'
+gem 'therubyracer'
 
 group :development do
   gem 'better_errors'
