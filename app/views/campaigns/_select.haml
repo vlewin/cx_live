@@ -1,1 +1,2 @@
-= select_tag 'tags', options_for_select(values), { multiple: true, class: 'form-control', size: 10 }
+- size = (values.size > 10) ? 10 : values.size
+= select_tag 'tags', options_for_select(values), { multiple: true, class: 'form-control', size: size }

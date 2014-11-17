@@ -3,5 +3,5 @@
   = select_tag :name, options_for_select(@names, params[:name] || :title), options
 
   .value
-    - options = { multiple: true, class: 'form-control', size: 10 }
+    - options = { multiple: true, class: 'form-control', size: (@values.size > 10) ? 10 : @values.size }
     = select_tag :tags, options_for_select(@values, selected: params[:tags]), options
