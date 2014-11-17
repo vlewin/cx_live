@@ -105,25 +105,47 @@ describe CampaignsController, type: :controller do
   end
 
   describe "POST #create" do
-    it "redirects to campaigns_path with flash notice message" do
-      file = double(path: '/tmp/import.xlsx')
-      expect_any_instance_of(Campaign).to receive(:import).with(file.path, '10').and_return true
+    context 'with valid params' do
+      it "redirects to campaigns_path with flash notice message" do
+        file = double(path: '/tmp/import.xlsx')
+        expect_any_instance_of(Campaign).to receive(:import).with(file.path, '10').and_return true
 
-      expect { post :create, campaign: { name: 'ABC' }, file: file.path, number_of_rows: 10 }.to change(Campaign, :count)
-      expect(Campaign.last.name).to eq('ABC')
+        expect { post :create, campaign: { name: 'ABC' }, file: file.path, number_of_rows: 10 }.to change(Campaign, :count)
+        expect(Campaign.last.name).to eq('ABC')
 
-      expect(response).to redirect_to campaigns_path
+        expect(flash[:notice]).to eq 'Campaign was successfully created.'
+        expect(response).to redirect_to campaigns_path
+      end
+    end
+
+    context 'with invalid params' do
+      it "renders :new template" do
+        file = double(path: '/tmp/import.xlsx')
+        post :create, campaign: { name: nil }, file: file.path, number_of_rows: 10
+
+        expect(response).to render_template :new
+      end
     end
   end
 
   describe "PUT #update" do
-    it "redirects to root path with flash notice message" do
-      put :update, id: campaign, campaign: { name: 'XYZ' }
+    context 'with valid params' do
+      it "redirects to root path with flash notice message" do
+        put :update, id: campaign, campaign: { name: 'XYZ' }
 
-      expect(assigns(:campaign)).to eq(campaign)
-      expect(Campaign.last.name).to eq('XYZ')
-      expect(flash[:notice]).to eq 'Campaign was successfully updated.'
-      expect(response).to redirect_to campaigns_path
+        expect(assigns(:campaign)).to eq(campaign)
+        expect(Campaign.last.name).to eq('XYZ')
+        expect(flash[:notice]).to eq 'Campaign was successfully updated.'
+        expect(response).to redirect_to campaigns_path
+      end
+    end
+
+    context 'with invalid params' do
+      it "renders :edit template" do
+        put :update, id: campaign, campaign: { name: nil }
+
+        expect(response).to render_template :edit
+      end
     end
   end
 

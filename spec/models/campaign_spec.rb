@@ -11,6 +11,8 @@ describe Campaign do
   it { should have_many :images }
   it { should have_many :tags }
 
+  it { should validate_presence_of :name }
+
   describe '.search' do
     it 'finds images by tag values' do
       expect(subject.search(tag.value)).to include(image)
