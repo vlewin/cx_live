@@ -28,6 +28,8 @@ $(document).ready(function() {
   $(document).popover({
     html: true,
     trigger:'hover',
+    placement: 'auto',
+    // delay: 300,
     selector: '.img-square',
     content: function () {
       return '<img src="'+$(this).data('img') + '" />';
