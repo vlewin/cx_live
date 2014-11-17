@@ -6,6 +6,8 @@ provided by the [RailsApps Project](http://railsapps.github.io/).
 
 Rails Composer is open source and supported by subscribers. Please join RailsApps to support development of Rails Composer.
 
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/vlewin/cx_live)
+
 Ruby on Rails
 -------------
 
