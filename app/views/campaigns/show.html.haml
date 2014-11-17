@@ -15,15 +15,11 @@
             Filters
             .pull-right
               - # FIXME: Move to application_helpers (icon_link_to)
-              %a.add{ href: add_filter_campaign_path(@campaign), data: { target: '.filter', handler: :after, remote: :true } }
+              %a.add.green{ href: add_filter_campaign_path(@campaign), data: { target: '.filter', handler: :after, remote: :true } }
                 %span.glyphicon.glyphicon-plus-sign{"aria-hidden" => "true"}
                 add filter
 
         .panel-body
-          -# .text-muted
-          -#   %span.glyphicon.glyphicon-info-sign
-          -#   Please reload the page if second select box doesn't appear
-
           = form_tag search_campaign_path(@campaign), { id: 'filters_form', data: { target: '#images' }, remote: true } do
             = render 'filter'
 
@@ -31,9 +27,7 @@
             = button_tag(type: 'submit', class: 'btn btn-success show-spinner') do
               = fa_icon 'spinner spin', class: 'hidden'
               Apply filters
-            -# # = submit_tag 'Apply filters', class: 'btn btn-success'
             = link_to 'Clear all filters', campaign_path(@campaign), class: 'btn btn-default'
-
 
 
   = link_to 'Back', campaigns_path, class: 'btn btn-default'

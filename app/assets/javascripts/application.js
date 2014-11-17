@@ -19,22 +19,27 @@
 $(document).ready(function() {
   console.log( "ready!" );
 
+
+  $("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  });
+
+
   $(document).on('click', '.show-spinner', function () {
     if($($(this).parents('form'))[0].checkValidity() === true) {
       $('.fa-spinner').toggleClass('hidden');
     }
-  })
+  });
 
   $(document).popover({
     html: true,
     trigger:'hover',
     placement: 'auto',
-    // delay: 300,
     selector: '.img-square',
     content: function () {
       return '<img src="'+$(this).data('img') + '" />';
     }
-
   });
 
 
@@ -55,6 +60,6 @@ $(document).ready(function() {
     }
 
     $('.fa-spinner').addClass('hidden')
-  })
+  });
 
 });

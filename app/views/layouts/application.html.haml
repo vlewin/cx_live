@@ -8,8 +8,36 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %header
-      = render 'layouts/navigation'
-    %main{:role => "main"}
-      = render 'layouts/messages'
-      = yield
+    #wrapper
+      #sidebar-wrapper
+        %ul.sidebar-nav
+          %li.sidebar-brand
+            = fa_icon 'line-chart 4x'
+            = link_to 'CX LIVE', campaigns_path
+          %li
+            %a{href: campaigns_path}
+              Overview
+              .pull-right= fa_icon 'check-circle lg', class: 'green'
+          %li
+            = link_to 'Filter', campaigns_path
+          %li
+            %a{:href => "#"} Analysis
+          %li
+            %a{:href => "#"} Results
+          %li
+            %a{:href => "#"} Export
+          %li
+            %a{:href => "#"} Settings
+
+      #page-content-wrapper
+        %header
+          -# %a#menu-toggle.btn.btn-default{:href => "#menu-toggle"} Toggle Menu
+          -# # = render 'layouts/navigation'
+        %main{:role => "main"}
+          = render 'layouts/messages'
+          = yield
+
+
+
+
+
